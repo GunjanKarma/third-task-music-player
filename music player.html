@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  
+  
+
+<style>
+  body {
+  background: #887676;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+.player {
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 15px;
+  width: 350px;
+  box-shadow: 0 0 15px rgba(128, 121, 112, 0.1);
+}
+
+.now-playing {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.controls {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.controls button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 20px;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.controls button:hover {
+  background: #555;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.progress-container input[type=range] {
+  flex: 1;
+}
+
+.volume {
+  margin-bottom: 20px;
+}
+.playlist {
+  background: #2a2a2a;
+  padding: 10px;
+  border-radius: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.playlist ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.playlist li:hover {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #103dce;
+}
+
+.playlist li:hover {
+  background: #b46b18;
+}
+
+
+
+
+</style>
+<div class="player">
+    <div class="now-playing">
+      <h2 id="title">Song Title</h2>
+      <h4 id="artist">Artist</h4>
+    </div>
+
+    <audio id="audio"></audio>
+    <audio src="sample1.mp3" control></audio>
+
+    <div class="controls">
+      <button id="prev">&#9664;&#9664;</button>
+      <button id="play">&#9654;</button>
+      <button id="next">&#9654;&#9654;</button>
+    </div>
+
+    <div class="progress-container">
+      <span id="current-time">0:00</span>
+      <input type="range" id="progress" value="0" />
+      <span id="duration">0:00</span>
+    </div>
+
+    <div class="volume">
+      <div class="volume">
+      <label>Volume:</label>
+      <input type="range" id="volume" min="0" max="1" step="0.01" />
+    </div>
+
+    <div class="playlist">
+      <h3>Playlist</h3>
+      <ul id="track-list"></ul>
+    </div>
+  </div>
+
+  <script src="first28.js"></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
